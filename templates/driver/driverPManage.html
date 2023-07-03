@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+</form>
+
+<!-- Bootstrap ve jQuery dosyalarını dahil edin -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-datepicker.tr.js' %}"></script>
+<link href="{% static 'css/bootstrap-datepicker.min.css' %}" rel="stylesheet">
+
+<!-- Datepicker'ları etkinleştirin -->
+<script>
+    $(document).ready(function() {
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+            language: 'tr'
+            todayHighlight: true,
+            autoclose: true
+        }).datepicker("setDate", new Date());
+    });
+</script>
+
+  {% endblock content %}
+
+

@@ -1,0 +1,94 @@
+{% extends 'base/dashBase.html' %}
+{% block driverInfo %}
+<div class="row justify-content-around">
+  <a href="#" class="d-flex flex- align-items-center text-white text-decoration-none dropdown-toggle col" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="{{driver.profil_fotografi.url}}" alt="" width="32" height="32" class="rounded-circle me-2">
+      <strong>{{request.user.username}}</strong>
+  </a>
+</div>
+<div class="row justify-content-around">
+  <ul class="dropdown-menu dropdown-menu-dark text-small shadow col" aria-labelledby="dropdownUser1">
+      <li><a class="dropdown-item" href="/drivers/driverprofile/{{driver.username}}">Profilim</a></li>
+      <li><a class="dropdown-item" href="/drivers/driverDash/manageProfil/">Profili Yönet</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="/logout">Çıkış Yap</a></li>
+  </ul>
+</div>
+{% endblock driverInfo %}
+{% block content %}
+<div class="row" >
+    <div class="col-md-12">
+    <div class="main-card mb-3 card">
+<h1 style="padding: 20px 0px 10px 20px;">Rezervasyonlarım</h1>
+        <div class="btn-actions-pane-right">
+    <div role="group" class="btn-group-sm btn-group">
+    </div>
+    </div>
+    </div>
+    <div class="table-responsive">
+    <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+    <thead>
+    <tr>
+    <th class="text-center">#</th>
+    <th>Müşteri</th>
+    <th class="text-center">Telefon</th>
+    <th class="text-center">Şehir</th>
+    <th class="text-center">Durum</th>
+    <th class="text-center">Fiyat</th>
+    <th class="text-center">İptal Et</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for reservation in reservations %}
+    {% if not reservation.onay_durum and not reservation.tamam_durum %}
+    <tr>
+        <td class="text-center text-muted">{{reservation.id}}</td>
+        <td>
+            <div class="widget-content p-0" style="width: 110px;">
+                <div class="widget-content-wrapper">
+                  <div class="widget-content-left d-flex align-items-center">
+
+                    <div class="widget-content-left flex2">
+                      <div class="widget-heading">{{reservation.kullanici.first_name}} {{reservation.kullanici.last_name}}</div>
+                      <div class="widget-subheading opacity-7"><a href="/userProfile/{{reservation.kullanici.username}}">{{reservation.kullanici.username}}</a></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </td>
+    </td>
+    <td class="text-center">
+        {{reservation.kullanici.telefon }}
+    </td>   
+        <td class="text-center">
+            {{reservation.sehir}}
+        </td>
+        <td class="text-center">
+            {% if reservation.onay_durum %}
+        <div class="badge badge-success">Onaylandı</div>
+        {% else %}
+        <div class="badge badge-warning">Beklemede</div>
+        {% endif %}
+    </td>
+        <td class="text-center">
+            {{reservation.fiyat}} $
+        </td>
+        <td class="text-center">
+            {% if reservation.onay_durum %}
+            <button type="button" id="PopoverCustomT-1" class="btn btn-danger btn-sm" disabled>İptal Et</button>
+            {% else %}
+            <a href="/reservations/deleteRez/{{reservation.id}}"><button type="button" id="iptalbuton" class="btn btn-danger btn-sm" >İptal Et</button></a>
+            {% endif %}
+            <a href="/reservations/onayRez/{{reservation.id}}"><button type="button" id="tamambuton" class="btn btn-success btn-sm" >Onayla</button></a>
+        </td>
+        </tr>
+    {% endif %}
+    {% endfor %}
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock content %}
+

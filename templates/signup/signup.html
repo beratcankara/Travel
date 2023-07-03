@@ -1,0 +1,52 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    <div class="bradcam_area breadcam_bg">
+        <h3>Kayıt Ol !</h3>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Kullanıcı Kaydı</h2>
+              <form method="POST">
+                {% csrf_token %}
+                <!-- Kullanıcı kaydı form alanları buraya gelecek -->
+                <div class="mb-3">
+                  <label for="username" class="form-label">İsim</label>
+                  <input type="text" class="form-control" id="first_name" name="first_name" required>
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Soyisim</label>
+                  <input type="text" class="form-control" id="last_name" name="last_name" required>
+                </div>
+                <button type="submit" name = "userSign" class="btn btn-primary">Kayıt Ol</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Sürücü Kaydı</h2>
+              <form method="POST">
+                {% csrf_token %}
+                <!-- Kullanıcı kaydı form alanları buraya gelecek -->
+                <div class="mb-3">
+                  <label for="username" class="form-label">İsim</label>
+                  <input type="text" class="form-control" id="first_name" name="first_name" required>
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Soyisim</label>
+                  <input type="text" class="form-control" id="last_name" name="last_name" required>
+                </div>
+                <button type="submit" name = "driverSign" class="btn btn-primary">Kayıt Ol</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+{% endblock content %}

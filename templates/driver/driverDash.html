@@ -1,0 +1,32 @@
+{% extends 'base/dashBase.html' %}
+
+{% block driverInfo %}
+<div class="row justify-content-around">
+  <a href="#" class="d-flex flex- align-items-center text-white text-decoration-none dropdown-toggle col" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="{{driver.profil_fotografi.url}}" alt="" width="32" height="32" class="rounded-circle me-2">
+      <strong>{{request.user.username}}</strong>
+  </a>
+</div>
+<div class="row justify-content-around">
+  <ul class="dropdown-menu dropdown-menu-dark text-small shadow col" aria-labelledby="dropdownUser1">
+      <li><a class="dropdown-item" href="/drivers/driverprofile/{{driver.username}}">Profilim</a></li>
+      <li><a class="dropdown-item" href="/drivers/driverDash/manageProfil/">Profili Yönet</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="/logout">Çıkış Yap</a></li>
+  </ul>
+</div>
+{% endblock driverInfo %}
+
+{% block content %}
+<h2>Hoş Geldin, {{request.user.username}}</h2>
+<hr>
+<div class="alert alert-danger" role="alert">
+  Henüz <a href="/drivers/driverDash/onaysızRez/" class="alert-link">onaylanmamış</a> {{onaysizCount}} rezervasyonun bulunuyor.
+</div>
+<div class="alert alert-success" role="alert">
+  <a href="/drivers/driverDash/onaylıRez/" class="alert-link">Onaylanmış</a> {{onayliCount}} rezervasyonun bulunuyor.
+</div>
+<div class="alert alert-info" role="alert">
+  <a href="/drivers/driverDash/rezArsiv/" class="alert-link">Tamamlanmış</a> {{arsivCount}} rezervasyonun bulunuyor.
+</div>
+{% endblock content %}

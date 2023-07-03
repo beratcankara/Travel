@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base/base.html' %}
+{% block content %}
+<body>
+	<div id="booking" class="section">
+		<div class="section-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7 col-md-push-5">
+						<div class="booking-cta">
+							<h1>Rezervasyonunu Yap !</h1>
+							<p>En uygun fiyatlarla en güzel şehirlerde vip turları kaçırmamak için hemen rezervasyonunu yap ve maceraya katıl !
+							</p>
+						</div>
+					</div>
+					<div class="col-md-4 col-md-pull-7">
+						<div class="booking-form">
+							<form method="POST">
+                                {% csrf_token %}
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<span class="form-label" >Ad</span>
+											<input class="form-control" type="text" disabled value="{{user.first_name}}">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<span class="form-label">Soyad</span>
+											<input class="form-control" type="text" disabled value="{{user.last_name}}">
+										</div>
+									</div>
+								</div>
+                                <div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<span class="form-label" for="{{form.baslangic_tarihi.id_for_label}}">Başlangıç Tarihi </span>
+											<input class="form-control" type="date" id="{{form.baslangic_tarihi.id_for_label}}" name="baslangic_tarihi">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<span class="form-label" for="{{form.bitis_tarihi.id_for_label}}">Bitiş Tarihi</span>
+											<input class="form-control" type="date" id="{{form.bitis_tarihi.id_for_label}}" name="bitis_tarihi" >
+										</div>
+									</div>
+								</div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+											<span class="form-label" for="{{form.sehir.id_for_label}}">Şehir</span>
+										<div class="form-group">
+                                            <select name="sehir" id="{{ form.sehir.id_for_label }}" class="form-control">
+                                                <option value="İstanbul" disabled>İstanbul</option>
+                                                <optgroup label="İstanbul Bölgeleri">
+                                                  <option value="Avrupa Yakası" selected>Avrupa Yakası</option>
+                                                  <option value="Anadolu Yakası">Anadolu Yakası</option>
+                                                </optgroup>
+                                                <option value="Adana">Adana</option>
+                                                <option value="Adıyaman">Adıyaman</option>
+                                                <option value="Afyonkarahisar">Afyonkarahisar</option>
+                                                <option value="Ağrı">Ağrı</option>
+                                                <option value="Amasya">Amasya</option>
+                                                <option value="Ankara">Ankara</option>
+                                                <option value="Antalya">Antalya</option>
+                                                <option value="Artvin">Artvin</option>
+                                                <option value="Aydın">Aydın</option>
+                                                <option value="Balıkesir">Balıkesir</option>
+                                                <option value="Bilecik">Bilecik</option>
+                                                <option value="Bingöl">Bingöl</option>
+                                                <option value="Bitlis">Bitlis</option>
+                                                <option value="Bolu">Bolu</option>
+                                                <option value="Burdur">Burdur</option>
+                                                <option value="Bursa">Bursa</option>
+                                                <option value="Çanakkale">Çanakkale</option>
+                                                <option value="Çankırı">Çankırı</option>
+                                                <option value="Çorum">Çorum</option>
+                                                <option value="Denizli">Denizli</option>
+                                                <option value="Diyarbakır">Diyarbakır</option>
+                                                <option value="Edirne">Edirne</option>
+                                                <option value="Elazığ">Elazığ</option>
+                                                <option value="Erzincan">Erzincan</option>
+                                                <option value="Erzurum">Erzurum</option>
+                                                <option value="Eskişehir">Eskişehir</option>
+                                                <option value="Gaziantep">Gaziantep</option>
+                                                <option value="Giresun">Giresun</option>
+                                                <option value="Gümüşhane">Gümüşhane</option>
+                                                <option value="Hakkâri">Hakkâri</option>
+                                                <option value="Hatay">Hatay</option>
+                                                <option value="Isparta">Isparta</option>
+                                                <option value="Mersin">Mersin</option>
+                                                <option value="İstanbul">İstanbul</option>
+                                                <option value="İzmir">İzmir</option>
+                                                <option value="Kars">Kars</option>
+                                                <option value="Kastamonu">Kastamonu</option>
+                                                <option value="Kayseri">Kayseri</option>
+                                                <option value="Kırklareli">Kırklareli</option>
+                                                <option value="Kırşehir">Kırşehir</option>
+                                                <option value="Kocaeli">Kocaeli</option>
+                                                <option value="Konya">Konya</option>
+                                                <option value="Kütahya">Kütahya</option>
+                                                <option value="Malatya">Malatya</option>
+                                                <option value="Manisa">Manisa</option>
+                                                <option value="Kahramanmaraş">Kahramanmaraş</option>
+                                                <option value="Mardin">Mardin</option>
+                                                <option value="Muğla">Muğla</option>
+                                                <option value="Muş">Muş</option>
+                                                <option value="Nevşehir">Nevşehir</option>
+                                                <option value="Niğde">Niğde</option>
+                                                <option value="Ordu">Ordu</option>
+                                                <option value="Rize">Rize</option>
+                                                <option value="Sakarya">Sakarya</option>
+                                                <option value="Samsun">Samsun</option>
+                                                <option value="Siirt">Siirt</option>
+                                                <option value="Sinop">Sinop</option>
+                                                <option value="Sivas">Sivas</option>
+                                                <option value="Tekirdağ">Tekirdağ</option>
+                                                <option value="Tokat">Tokat</option>
+                                                <option value="Trabzon">Trabzon</option>
+                                                <option value="Tunceli">Tunceli</option>
+                                                <option value="Şanlıurfa">Şanlıurfa</option>
+                                                <option value="Uşak">Uşak</option>
+                                                <option value="Van">Van</option>
+                                                <option value="Yozgat">Yozgat</option>
+                                                <option value="Zonguldak">Zonguldak</option>
+                                                <option value="Aksaray">Aksaray</option>
+                                                <option value="Bayburt">Bayburt</option>
+                                                <option value="Karaman">Karaman</option>
+                                                <option value="Kırıkkale">Kırıkkale</option>
+                                                <option value="Batman">Batman</option>
+                                                <option value="Şırnak">Şırnak</option>
+                                                <option value="Bartın">Bartın</option>
+                                                <option value="Ardahan">Ardahan</option>
+                                                <option value="Iğdır">Iğdır</option>
+                                                <option value="Yalova">Yalova</option>
+                                                <option value="Karabük">Karabük</option>
+                                                <option value="Kilis">Kilis</option>
+                                                <option value="Osmaniye">Osmaniye</option>
+                                                <option value="Düzce">Düzce</option>
+                                              </select>
+                                              
+                                        </div>
+                                    </div>
+                                </div>
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="form-group">
+											<span class="form-label" for="{{form.kisi_sayisi.id_for_label}}">Kişi Sayısı</span>
+											<select class="form-control" name="kisi_sayisi" id="{{ form.kisi_sayisi.id_for_label }}">
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+												<option>5</option>
+												<option>6</option>
+												<option>7</option>
+												<option>8</option>
+											</select>
+											<span class="select-arrow"></span>
+										</div>
+									</div>
+								</div>
+								<div class="form-btn">
+									<button class="submit-btn" name="soforListele">Şoförleri Listele</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+<script>document.getElementById('id_baslangic_tarihi').valueAsDate = new Date().today;
+</script>
+{% endblock content %}
+
+
+</html>

@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+{% load mathfilters %}
+
+{% block content %}
+<section class="dark">
+	<div class="container " style="padding-top: 10rem; padding-bottom: 10rem;">
+		<h1 class="h1Name text-center" id="pageHeaderTitle">Şoförler</h1>
+        {% for driver in available_drivers %}
+<article class="postcard dark blue">
+    <a class="postcard__img_link" href="/drivers/driverprofile/{{driver.username}}">
+        <img class="postcard__img" src="{{driver.profil_fotografi.url}}" alt="Image Title" />
+    </a>
+    <div class="postcard__text">
+        <h1 class="h1Name postcard__title blue">{{ driver.ad }} {{ driver.soyad }} </h1>
+        <div class="postcard__subtitle small">
+                <p style="color:#0076bd;">Toplam Fiyat:<span class="fas fa-calendar-alt mr-2" >{{gunSayisi|mul:driver.gunluk_tur_fiyati}}$
+                </span>
+            <p>{{gunSayisi}} günlük tur fiyatı.</p>
+            </p>
+            
+            </time>
+        </div>
+        <div class="postcard__bar"></div>
+        <div class="postcard__preview-txt">{% if driver.aciklama %}{{driver.aciklama}}
+            {% else %}
+            "Kalitenin adresi."
+            {% endif %}</div>
+        <ul class="postcard__tagbox">
+            <li class="tag__item"><a href="/drivers/driverprofile/{{driver.username}}">Profili Göster</a></li>
+            <li class="tag__item play blue">
+                <a href="/reservations/chooseDriver/{{driver.username}}/{{reservation.id}}">Randevuyu Tamamla</a>
+            </li>
+        </ul>
+    </div>
+</article>
+
+{% empty %}
+        <p>Seçilen tarihlerde müsait şoför bulunamadı.</p>
+      {% endfor %}
+</div>
+</section>
+{% endblock content %}
+
